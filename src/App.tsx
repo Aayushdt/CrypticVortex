@@ -1,12 +1,21 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import SignUp from './components/SignUp';
+import Login from './components/Login';
+import Welcome from './components/Welcome';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-900 flex items-center justify-center py-8 px-4">
-      <div className="w-full max-w-[1100px] bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 shadow-2xl">
-        <SignUp />
+    <Router>
+      <div className="min-h-screen bg-gray-900">
+        <Routes>
+          <Route path="/" element={<Navigate to="/signup" replace />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/welcome" element={<Welcome />} />
+        </Routes>
       </div>
-    </div>
+    </Router>
   );
 }
 
