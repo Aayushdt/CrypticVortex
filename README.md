@@ -28,13 +28,7 @@ Evenly is a smart bill-splitting website designed to make splitting expenses amo
 
 
 
-## Installation
 
-Install my-project with npm
-
-```bash
-
-```
     
 ## Support
 
