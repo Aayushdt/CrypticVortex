@@ -1,7 +1,7 @@
 /* =========================================
    GLOBAL VARIABLES & BASE STYLES
    ========================================= */
-   :root {
+:root {
     /* Core Theme Colors */
     --primary: #1b7a4e;          /* Richer green */
     --primary-dark: #0e5e3a;     /* Deeper green */
