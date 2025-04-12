@@ -72,7 +72,30 @@ const APP_STATE = {
     },
     expenses: {},
     containerCounter: 4, // Start counter after existing containers
-    itemCounter: 9 // Start counter after existing items
+    itemCounter: 9, // Start counter after existing items
+    selectedIcon: 'fas fa-utensils', // Default icon
+    peopleTags: [], // Array to store people tags for a new container
+    containerPeople: {}, // Object to store people in each container
+    
+    // Method to set the current container
+    setCurrentContainer: function(containerId) {
+        this.currentContainer = containerId;
+    },
+    
+    // Method to set the current item ID
+    setCurrentItemId: function(itemId) {
+        this.currentItemId = itemId;
+    },
+    
+    // Method to set the selected icon
+    setSelectedIcon: function(iconClass) {
+        this.selectedIcon = iconClass;
+    },
+    
+    // Method to clear people tags array
+    clearPeopleTags: function() {
+        this.peopleTags = [];
+    }
 };
 
 // ===== INITIALIZATION =====
@@ -499,6 +522,24 @@ function initializeApp() {
                 showSettlementDetails(containerId);
             });
         });
+        
+        // Initialize icon selector in container modal
+        if (DOM.iconSelector) {
+            const iconOptions = DOM.iconSelector.querySelectorAll('.icon-option');
+            iconOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove active class from all options
+                    iconOptions.forEach(opt => opt.classList.remove('active'));
+                    // Add active class to clicked option
+                    this.classList.add('active');
+                    // Update app state
+                    const iconClass = this.getAttribute('data-icon');
+                    if (iconClass) {
+                        APP_STATE.setSelectedIcon(iconClass);
+                    }
+                });
+            });
+        }
         
         // Initialize people indicators with direct onclick attributes
         initPeopleIndicators();
@@ -1221,8 +1262,23 @@ function deleteItem(itemId) {
  */
 function addContainer() {
     if (DOM.containerTitle.value) {
-        // Create ID from title
-        const containerId = DOM.containerTitle.value.toLowerCase().replace(/\s+/g, '-');
+        // Create ID from title - sanitize and make URL-friendly
+        let containerId = DOM.containerTitle.value
+            .toLowerCase()
+            .trim()
+            .replace(/[^a-z0-9\s-]/g, '') // Remove any special chars except spaces and hyphens
+            .replace(/\s+/g, '-');        // Replace spaces with hyphens
+        
+        // Make sure container ID is unique by adding a number suffix if needed
+        let baseId = containerId;
+        let counter = 1;
+        
+        // Check if the container ID already exists
+        while (document.querySelector(`.expense-container[data-id="${containerId}"]`) || 
+               window.containersData && window.containersData[containerId]) {
+            containerId = `${baseId}-${counter}`;
+            counter++;
+        }
         
         // Create new container element with animation classes
         const newContainer = document.createElement('div');
@@ -1236,7 +1292,7 @@ function addContainer() {
         
         // Generate people tooltip content
         let peopleTooltip = '';
-        let peopleCount = APP_STATE.peopleTags.length;
+        let peopleCount = APP_STATE.peopleTags ? APP_STATE.peopleTags.length : 0;
         
         if (peopleCount > 0) {
             // Create a tooltip with people's names
@@ -2014,6 +2070,11 @@ function removePersonFromContainer(containerId, personName) {
  * Add a person to the list in the "Start a Journey" modal
  */
 function addPersonToList() {
+    // Ensure peopleTags is initialized
+    if (!APP_STATE.peopleTags) {
+        APP_STATE.peopleTags = [];
+    }
+    
     const personName = DOM.newPersonName.value.trim();
     
     if (personName) {
