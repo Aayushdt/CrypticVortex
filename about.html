@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Evenly - About Us</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+      :root {
+        --primary: #2ecc71;
+        --primary-dark: #27ae60;
+        --primary-light: #a8f0c6;
+        --primary-transparent: rgba(46, 204, 113, 0.1);
+        --bg-light: #f8f9fa;
+        --bg-dark: #1a1a1a;
+        --card-light: #ffffff;
+        --card-dark: #2d2d2d;
+        --text-light: #333;
+        --text-dark: #f5f5f5;
+        --border-light: #e0e0e0;
+        --border-dark: #444;
+        --shadow-light: 0 8px 30px rgba(0, 0, 0, 0.1);
+        --shadow-dark: 0 8px 30px rgba(0, 0, 0, 0.3);
+        --transition: all 0.3s ease;
+      }
+      
+      [data-theme="dark"] {
+        --bg: var(--bg-dark);
+        --card: var(--card-dark);
+        --text: var(--text-dark);
+        --border: var(--border-dark);
+        --shadow: var(--shadow-dark);
+      }
+      
+      [data-theme="light"] {
+        --bg: var(--bg-light);
+        --card: var(--card-light);
+        --text: var(--text-light);
+        --border: var(--border-light);
+        --shadow: var(--shadow-light);
+      }
+      
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+      }
+      
+      body {
+        background-color: var(--bg);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        color: var(--text);
+        transition: var(--transition);
+      }
+      
+      .about-container {
+        max-width: 1000px;
+        margin: 100px auto 50px;
+        padding: 0 20px;
+      }
+      
+      .about-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+      
+      .about-header h1 {
+        color: var(--primary);
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        position: relative;
+        display: inline-block;
+      }
+      
+      .about-header h1::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+        border-radius: 2px;
+      }
+      
+      .about-header p {
+        font-size: 1.1rem;
+        color: var(--text);
+        opacity: 0.8;
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-bottom: 60px;
+      }
+      
+      .about-card {
+        background: var(--card);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        padding: 30px;
+        transition: var(--transition);
+        border: 1px solid var(--border);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .about-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+      
+      .about-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+      }
+      
+      .about-card h2 {
+        color: var(--primary);
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      
+      .about-card p {
+        color: var(--text);
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+      
+      .icon-circle {
+        width: 40px;
+        height: 40px;
+        background: var(--primary-transparent);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary);
+        font-size: 1.2rem;
+      }
+      
+      .team-section {
+        margin-top: 80px;
+        text-align: center;
+      }
+      
+      .team-section h2 {
+        color: var(--primary);
+        font-size: 2rem;
+        margin-bottom: 40px;
+        position: relative;
+        display: inline-block;
+      }
+      
+      .team-section h2::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+        border-radius: 2px;
+      }
+      
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+      }
+      
+      .team-member {
+        background: var(--card);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        transition: var(--transition);
+        border: 1px solid var(--border);
+      }
+      
+      .team-member:hover {
+        transform: translateY(-5px);
+      }
+      
+      .team-img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        filter: grayscale(20%);
+        transition: var(--transition);
+      }
+      
+      .team-member:hover .team-img {
+        filter: grayscale(0%);
+      }
+      
+      .team-info {
+        padding: 20px;
+      }
+      
+      .team-info h3 {
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+        color: var(--text);
+      }
+      
+      .team-info p {
+        color: var(--primary);
+        font-size: 0.95rem;
+        font-weight: 500;
+        margin-bottom: 15px;
+      }
+      
+      .social-icons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 15px;
+      }
+      
+      .social-icons a {
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--primary-transparent);
+        color: var(--primary);
+        border-radius: 50%;
+        transition: var(--transition);
+      }
+      
+      .social-icons a:hover {
+        background: var(--primary);
+        color: white;
+        transform: translateY(-3px);
+      }
+      
+      .cta-section {
+        background: var(--card);
+        border-radius: 16px;
+        padding: 50px;
+        text-align: center;
+        margin: 50px auto;
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border);
+        max-width: 800px;
+      }
+      
+      .cta-section h2 {
+        color: var(--text);
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+      }
+      
+      .cta-section p {
+        color: var(--text);
+        opacity: 0.8;
+        margin-bottom: 30px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .cta-button {
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        display: inline-block;
+        text-decoration: none;
+      }
+      
+      .cta-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: 0.5s;
+        z-index: -1;
+      }
+      
+      .cta-button:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(46, 204, 113, 0.3);
+      }
+      
+      .cta-button:hover::before {
+        left: 100%;
+      }
+
+      /* Navigation */
+      .navbar {
+        background-color: var(--card);
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        padding: 15px 10%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: var(--transition);
+      }
+      
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 600;
+        font-size: 1.5rem;
+      }
+      
+      .logo i {
+        color: var(--primary);
+      }
+      
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+      
+      .nav-links a {
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition);
+      }
+      
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+      
+      .back-to-site {
+        color: var(--text);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: var(--transition);
+        font-weight: 500;
+        font-size: 0.9rem;
+      }
+      
+      .back-to-site:hover {
+        color: var(--primary);
+      }
+
+      /* Theme Toggle */
+      .theme-toggle {
+        background: none;
+        border: none;
+        color: var(--text);
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: var(--transition);
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+      }
+      
+      .theme-toggle:hover {
+        background: var(--primary-transparent);
+        color: var(--primary);
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--card);
+        padding: 40px 0 20px;
+        margin-top: auto;
+        border-top: 1px solid var(--border);
+      }
+      
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      
+      .footer-column h3 {
+        color: var(--text);
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+      }
+      
+      .footer-column p {
+        color: var(--text);
+        opacity: 0.7;
+        margin-bottom: 20px;
+        line-height: 1.6;
+      }
+      
+      .footer-column ul {
+        list-style: none;
+      }
+      
+      .footer-column ul li {
+        margin-bottom: 10px;
+      }
+      
+      .footer-column ul li a {
+        color: var(--text);
+        opacity: 0.7;
+        text-decoration: none;
+        transition: var(--transition);
+      }
+      
+      .footer-column ul li a:hover {
+        color: var(--primary);
+        opacity: 1;
+      }
+      
+      .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+      
+      .social-links a {
+        background: var(--primary-transparent);
+        color: var(--primary);
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+      }
+      
+      .social-links a:hover {
+        background: var(--primary);
+        color: white;
+        transform: translateY(-3px);
+      }
+      
+      .copyright {
+        text-align: center;
+        padding-top: 30px;
+        color: var(--text);
+        opacity: 0.6;
+        margin-top: 30px;
+        border-top: 1px solid var(--border);
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .about-container {
+          margin-top: 80px;
+        }
+        
+        .about-header h1 {
+          font-size: 2rem;
+        }
+        
+        .about-card {
+          padding: 25px;
+        }
+        
+        .cta-section {
+          padding: 30px 20px;
+        }
+        
+        .cta-section h2 {
+          font-size: 1.5rem;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .navbar {
+          padding: 15px 5%;
+        }
+        
+        .nav-links {
+          gap: 15px;
+        }
+        
+        .team-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body data-theme="light">
+    <!-- Navbar -->
+    <nav class="navbar">
+      <a href="index.html" class="logo">
+       <img src="about.jpg" width="100vw"  alt="">
+        <span></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#features">Features</a>
+        <a href="about.html" class="active">About</a>
+        <a href="login.html">Login</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </nav>
+
+    <div class="about-container">
+      <div class="about-header">
+        <h1>About Evenly</h1>
+        <p>At Evenly, we're passionate about making shared finances simple, fair, and transparent. Our journey began with a simple question: why is splitting expenses with friends still so complicated?</p>
+      </div>
+
+      <div class="card-container">
+        <div class="about-card">
+          <h2>
+            <div class="icon-circle">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            Our Mission
+          </h2>
+          <p>To create a world where friends and roommates never argue about money. We believe that financial transparency builds stronger relationships.</p>
+          <p>Our platform makes it effortless to track shared expenses, split bills fairly, and settle debts without the awkward money conversations.</p>
+        </div>
+
+        <div class="about-card">
+          <h2>
+            <div class="icon-circle">
+              <i class="fas fa-history"></i>
+            </div>
+            Our Story
+          </h2>
+          <p>Founded in 2024 by a group of roommates who were tired of using spreadsheets to track shared expenses, Evenly has grown from a simple app to a comprehensive platform.</p>
+          <p>What started as a solution for ourselves has now helped thousands of users manage their group finances transparently.</p>
+        </div>
+
+        <div class="about-card">
+          <h2>
+            <div class="icon-circle">
+              <i class="fas fa-gem"></i>
+            </div>
+            Our Values
+          </h2>
+          <p>Simplicity - We believe financial tools should be accessible to everyone.</p>
+          <p>Transparency - We build trust through clear, open communication.</p>
+          <p>Fairness - We ensure everyone pays exactly what they owe, no more and no less.</p>
+        </div>
+      </div>
+
+      <div class="team-section">
+        <h2>Our Team</h2>
+        <div class="team-grid">
+          <div class="team-member">
+            <img src="IMG-20250413-WA0001.jpg" alt="Sarah Johnson Avatar" class="team-img">
+            <div class="team-info">
+              <h3>Himanshu Jain</h3>
+              <p>Leader</p>
+              <div class="social-icons">
+                <a href="https://www.linkedin.com/in/himanshu-jain-53036a327?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/Himanshujain8267"><i class="fab fa-github"></i></a>
+                <a href="himanshuj.ug24.cs@nitp.ac.in"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="team-member">
+            <img src="IMG-20250413-WA0002.jpg" alt="Michael Rodriguez Avatar" class="team-img">
+            <div class="team-info">
+              <h3>Purushottam Yadav</h3>
+              <p>Co - Leader</p>
+              <div class="social-icons">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/IwillCrushYou"><i class="fab fa-github"></i></a>
+                <a href="purushottamy.ug24.ece@nitp.ac.in"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="team-member">
+            <img src="IMG-20250413-WA0003.jpg" alt="Emily Chen Avatar" class="team-img">
+            <div class="team-info">
+              <h3>Aayush Chaudhary</h3>
+              <p>UX Designer</p>
+              <div class="social-icons">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/Aayushdt"><i class="fab fa-github"></i></a>
+                <a href="aayushc.ug24.ece@nitp.ac.in"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="team-member">
+            <img src="IMG-20250413-WA0004.jpg" alt="David Park Avatar" class="team-img">
+            <div class="team-info">
+              <h3>Harshwardhan</h3>
+              <p>Marketing Director</p>
+              <div class="social-icons">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/TheShadowStriker"><i class="fab fa-github"></i></a>
+                <a href="harshwardhan.ug24.cs@nitp.ac.in"><i class="fas fa-envelope"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <h2>Ready to simplify your shared expenses?</h2>
+        <p>Join thousands of users who trust Evenly to manage their group finances fairly and transparently.</p>
+        <a href="signup.html" class="cta-button">
+          <i class="fas fa-user-plus"></i>
+          Sign Up Now — It's Free
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>Evenly</h3>
+          <p>Making shared expenses simple, fair and transparent since 2024.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Product</h3>
+          <ul>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="#">Pricing</a></li>
+            <li><a href="#">Apps</a></li>
+            <li><a href="#">Integrations</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Press</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Support</h3>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        &copy; 2024 Evenly Technologies. All rights reserved.
+      </div>
+    </footer>
+
+    <script>
+      // Theme Toggle Functionality
+      const themeToggle = document.getElementById('themeToggle');
+      const body = document.body;
+      let isDark = localStorage.getItem('theme') === 'dark';
+
+      // Initialize theme
+      function setTheme() {
+        if (isDark) {
+          body.setAttribute('data-theme', 'dark');
+          themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+          localStorage.setItem('theme', 'dark');
+        } else {
+          body.setAttribute('data-theme', 'light');
+          themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+          localStorage.setItem('theme', 'light');
+        }
+      }
+      setTheme();
+
+      themeToggle.addEventListener('click', () => {
+        isDark = !isDark;
+        setTheme();
+        
+        // Add a simple animation
+        themeToggle.style.transform = 'scale(0.8)';
+        setTimeout(() => {
+          themeToggle.style.transform = 'scale(1)';
+        }, 200);
+      });
+    </script>
+  </body>
+</html> 

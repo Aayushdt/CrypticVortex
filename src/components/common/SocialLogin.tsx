@@ -1,6 +1,4 @@
 import React from 'react';
-import GoogleIcon from '../../assets/google.svg';
-import AppleIcon from '../../assets/apple.svg';
 
 interface SocialLoginProps {
   type: 'login' | 'signup';
@@ -25,14 +23,14 @@ const SocialLogin: React.FC<SocialLoginProps> = ({ type }) => {
           type="button"
           className="flex items-center justify-center gap-2 bg-gray-50 text-gray-700 rounded-lg p-3 hover:bg-gray-100 transition-colors border border-gray-200"
         >
-          <img src={GoogleIcon} alt="Google" className="w-5 h-5" />
+          <img src="src\assets\google.svg" alt="Google" className="w-5 h-5" />
           Google
         </button>
         <button
           type="button"
           className="flex items-center justify-center gap-2 bg-gray-50 text-gray-700 rounded-lg p-3 hover:bg-gray-100 transition-colors border border-gray-200"
         >
-          <img src={AppleIcon} alt="Apple" className="w-5 h-5" />
+          <img src="src\assets\apple.svg" alt="Apple" className="w-5 h-5" />
           Apple
         </button>
       </div>
